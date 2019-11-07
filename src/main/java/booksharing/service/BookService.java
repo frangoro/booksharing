@@ -18,6 +18,12 @@ public class BookService {
 	public List<Book> listAll() {
         return repo.findAll();
     }
+	
+	
+	public List<Book> find(String searchQuery) {
+		
+        return repo.findByTitleOrAuthor(searchQuery, searchQuery);
+    }
      
     public void save(Book book) {
         repo.save(book);

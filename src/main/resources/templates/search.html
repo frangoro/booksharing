@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <title>Book Sharing</title>
 </head>
 <body>
-<div align="center">
-    <h1>Book List</h1>
-    <br/><br/>
-    <form method="post" action="#" th:action="search">
-	    <label for="searchQuery">Title or author:</label>
-	    <input type="text" alt="Title or author"/>
-        <input type="image" th:src="@{/icons/searchIcon.jpeg}" alt="Submit" width="30" height="30" style="vertical-align: middle"/>
-    </form>
-    <br/>
-    <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>Book ID</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Status</th>
-                <th>Owner</th>
-                <th>User</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="book : ${books}">
-                <td th:text="${book.id}">Book ID</td>
-                <td th:text="${book.title}">Title</td>
-                <td th:text="${book.author}">Author</td>
-                <td th:text="${book.status}">Status</td>
-                <td th:text="${book.owner}">Owner</td>
-                <td th:text="${book.user}">User</td>
-            </tr>
-        </tbody>
-    </table>
-</div>   
+	<div align="center">
+		<h1>Book List</h1>
+		<br />
+		<br />
+		<form method="get" action="#" th:action="@{/search}">
+			<label for="searchQuery">Title or author:</label> 
+			<input type="text" th:name="searchQuery" alt="Title or author" />
+			<button type="submit">Submit</button> 
+<!-- 			<input type="image" -->
+<!-- 				th:src="@{/icons/searchIcon.jpeg}" alt="Submit" width="30" -->
+<!-- 				th:href="@{'/search/'}" -->
+<!-- 				height="30" style="vertical-align: middle" /> -->
+		</form>
+		<br />
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Book ID</th>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Status</th>
+					<th>Owner</th>
+					<th>User</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book : ${books}">
+					<td th:text="${book.id}">Book ID</td>
+					<td th:text="${book.title}">Title</td>
+					<td th:text="${book.author}">Author</td>
+					<td th:text="${book.status}">Status</td>
+					<td th:text="${book.owner}">Owner</td>
+					<td th:text="${book.user}">User</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>
