@@ -11,7 +11,8 @@ import booksharing.domain.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 	
-	@Query("SELECT b FROM Book b WHERE lower(b.title) LIKE lower(concat('%', ?1,'%')) OR lower(b.author) LIKE lower(concat('%', ?2,'%'))")
+	@Query("SELECT b FROM Book b WHERE lower(b.title) LIKE lower(concat('%', ?1,'%')) "
+			+ "OR lower(b.author) LIKE lower(concat('%', ?2,'%'))")
     List<Book> findByTitleOrAuthor(String title, String author);
 
 }

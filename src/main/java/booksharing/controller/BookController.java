@@ -27,7 +27,6 @@ public class BookController {
 	
 	@GetMapping("/search")
 	public String getBook(Model model, @RequestParam(value="searchQuery",required=false) String searchQuery) {
-		System.out.println("aaaaaaaaaaaaaaaaa: " + searchQuery);
 		
 		List<Book> books = service.find(searchQuery);
 	    model.addAttribute("books", books);

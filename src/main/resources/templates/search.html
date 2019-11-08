@@ -13,11 +13,11 @@
 		<form method="get" action="#" th:action="@{/search}">
 			<label for="searchQuery">Title or author:</label> 
 			<input type="text" th:name="searchQuery" alt="Title or author" />
-			<button type="submit">Submit</button> 
-<!-- 			<input type="image" -->
-<!-- 				th:src="@{/icons/searchIcon.jpeg}" alt="Submit" width="30" -->
-<!-- 				th:href="@{'/search/'}" -->
-<!-- 				height="30" style="vertical-align: middle" /> -->
+<!-- 			<button type="submit">Search</button>  -->
+			<input type="image"
+				th:src="@{/icons/searchIcon.jpeg}" alt="Submit" width="30"
+				th:href="@{'/search/'}"
+				height="30" style="vertical-align: middle" />
 		</form>
 		<br />
 		<table border="1" cellpadding="10">
