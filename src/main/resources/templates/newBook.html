@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout/fragments.html :: headerfiles">
+<meta charset="utf-8" />
+<title>Book Sharing</title>
+</head>
+<body>
+	<header th:insert="layout/fragments.html :: header"> </header>
+	<div align="center">
+		<h1>New Book</h1>
+		<br /> <br />
+		<form action="#" th:action="@{/user/book/save}" th:object="${book}" method="post">
+			Title:<br> <input type="text" name="title" th:field="*{title}"><br>
+			Author:<br> <input type="text" name="author" th:field="*{author}"><br> 
+			Status: <br> <input type="text" name="status" th:field="*{status}"><br><br>
+			User: <br> <input type="text" name="user" th:field="*{user}"><br><br>
+			<input type="submit" value="Save">
+		</form>
+	</div>
+</body>
+</html>

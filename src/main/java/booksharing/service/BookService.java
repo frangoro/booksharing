@@ -19,18 +19,20 @@ public class BookService {
         return repo.findAll();
     }
 	
-	
 	public List<Book> find(String searchQuery) {
-		
         return repo.findByTitleOrAuthor(searchQuery, searchQuery);
     }
+	
+	public List<Book> findByOwnerId(Long userId) {
+		return repo.findByOwnerId(userId);
+	}
      
     public void save(Book book) {
         repo.save(book);
     }
      
-    public Optional<Book> get(long id) {
-        return repo.findById(id);
+    public Book get(long id) {
+        return repo.findById(id).get();
     }
      
     public void delete(long id) {

@@ -2,13 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+<head th:insert="layout/fragments.html :: headerfiles">
 <meta charset="utf-8"/>
 <title>Book Sharing</title>
 </head>
 <body>
+<header th:insert="layout/fragments.html :: header"> </header>
 <div align="center">
-    <h1>Book List</h1>
-    <a href="/new">Add a new book</a>
+    <h1>My Book List</h1>
+    <a th:href="@{/user/book/new}">Add a new book</a>
     <br/><br/>
     <table border="1" cellpadding="10">
         <thead>
@@ -29,9 +31,9 @@
                 <td th:text="${book.owner}">Owner</td>
                 <td th:text="${book.user}">User</td>
                 <td>
-                    <a th:href="/@{'/edit/' + ${book.id}}">Edit</a>
+                    <a th:href="@{'/user/book/edit/' + ${book.id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;
-                    <a th:href="/@{'/delete/' + ${book.id}}">Delete</a>
+                    <a th:href="@{'/user/book/delete/' + ${book.id}}">Delete</a>
                 </td>
             </tr>
         </tbody>
