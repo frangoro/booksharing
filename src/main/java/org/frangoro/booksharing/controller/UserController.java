@@ -1,8 +1,12 @@
-package booksharing.controller;
+package org.frangoro.booksharing.controller;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.frangoro.booksharing.domain.Book;
+import org.frangoro.booksharing.domain.User;
+import org.frangoro.booksharing.service.BookService;
+import org.frangoro.booksharing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import booksharing.domain.Book;
-import booksharing.domain.User;
-import booksharing.service.BookService;
-import booksharing.service.UserService;
 
 @Controller
 @RequestMapping("/user")

@@ -1,10 +1,9 @@
-package booksharing.service;
+package org.frangoro.booksharing.service;
 
+import org.frangoro.booksharing.domain.User;
+import org.frangoro.booksharing.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import booksharing.domain.User;
-import booksharing.repository.UserRepository;
 
 @Service
 public class UserService {

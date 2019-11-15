@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head th:insert="layout/fragments.html :: headerfiles">
-<meta charset="utf-8" />
-<title>Book Sharing</title>
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
+<head>
+	<meta charset="utf-8" />
+	<title>My User</title>
 </head>
 <body>
-	<header th:insert="layout/fragments.html :: header"> </header>
-	<div align="center">
-		<h1>User Management</h1>
-		<br /> <br />
-		<form action="#" th:action="@{/user/save/{id}(id=${user.id})}" th:object="${user}" method="post">
-			User name:<br> <input type="text" name="username" th:field="*{username}"><br>
-			Name:<br> <input type="text" name="name" th:field="*{name}"><br> 
-<!-- 			Location: <br> <input type="text" name="location" th:field="*{location}"><br><br> -->
-			<input type="submit" value="Save">
-			<button name="delete" value="delete">Delete</button>
-		</form>
+	<div layout:fragment="content" th:remove="tag">
+		<div align="center">
+			<h1>User Management</h1>
+			<br /> <br />
+			<form action="#" th:action="@{/user/save/{id}(id=${user.id})}" th:object="${user}" method="post">
+				User name:<br> <input type="text" name="username" th:field="*{username}"><br>
+				Name:<br> <input type="text" name="name" th:field="*{name}"><br> 
+	<!-- 			Location: <br> <input type="text" name="location" th:field="*{location}"><br><br> -->
+				<input type="submit" value="Save">
+				<button name="delete" value="delete">Delete</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

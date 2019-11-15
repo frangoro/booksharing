@@ -1,4 +1,4 @@
-package booksharing.domain;
+package org.frangoro.booksharing.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

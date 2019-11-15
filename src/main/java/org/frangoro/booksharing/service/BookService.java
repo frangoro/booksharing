@@ -1,13 +1,12 @@
-package booksharing.service;
+package org.frangoro.booksharing.service;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.frangoro.booksharing.domain.Book;
+import org.frangoro.booksharing.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import booksharing.domain.Book;
-import booksharing.repository.BookRepository;
 
 @Service
 public class BookService {

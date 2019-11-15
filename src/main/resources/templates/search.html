@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head th:insert="layout/fragments.html :: headerfiles">
+<html xmlns:layout="https://www.thymeleaf.org/doc/articles/layouts.html"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
+<head>
 <meta charset="utf-8" />
-<title>Book Sharing</title>
+<title>Home</title>
 </head>
 <body>
-<header th:insert="layout/fragments.html :: header"> </header>
+<div layout:fragment="content" th:remove="tag">
 	<div align="center">
 		<h1>Book List</h1>
 		<br />
@@ -14,7 +15,6 @@
 		<form method="get" action="#" th:action="@{/search}">
 			<label for="searchQuery">Title or author:</label> 
 			<input type="text" th:name="searchQuery" alt="Title or author" />
-<!-- 			<button type="submit">Search</button>  -->
 			<input type="image"
 				th:src="@{/icons/searchIcon.jpeg}" alt="Submit" width="30"
 				th:href="@{'/search/'}"
@@ -44,6 +44,6 @@
 			</tbody>
 		</table>
 	</div>
-	<footer th:replace="layout/fragments.html :: footer"></footer>
+	</div>
 </body>
 </html>
