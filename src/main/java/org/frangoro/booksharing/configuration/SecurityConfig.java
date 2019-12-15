@@ -1,5 +1,7 @@
 package org.frangoro.booksharing.configuration;
 
+import javax.sql.DataSource;
+
 import org.frangoro.booksharing.controller.LoggingAccessDeniedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoggingAccessDeniedHandler accessDeniedHandler;
+    
+	@Autowired
+	DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -28,27 +33,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/webjars/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
+                	.formLogin()
+                    	.loginPage("/login")
+                    	.permitAll()
+                    	.usernameParameter("username").passwordParameter("password")
                 .and()
-                .logout()
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login?logout")
-                    .permitAll()
+	                .logout()
+	                    .invalidateHttpSession(true)
+	                    .clearAuthentication(true)
+	                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	                    .logoutSuccessUrl("/login?logout")
+	                    .permitAll()
                 .and()
-                .exceptionHandling()
-                    .accessDeniedHandler(accessDeniedHandler);
+                	.exceptionHandling()
+                		.accessDeniedHandler(accessDeniedHandler);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()//TODO jdb auth first and other day Social media authentication
-                .withUser("user").password("{noop}user").roles("USER")
-            .and()
-                .withUser("admin").password("{noop}admin").roles("MANAGER");
+    	//TODO jdb auth first and other day Social media authentication
+    	
+    	auth.jdbcAuthentication().dataSource(dataSource)
+		.usersByUsernameQuery(
+			"select id, username, password, enabled from user where username=?")
+		.authoritiesByUsernameQuery(
+			"select user_id, role from user_roles where username=?");
     }
 
 }
