@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns:layout="https://www.thymeleaf.org/doc/articles/layouts.html"
 	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layout/fragments}">
+	layout:decorate="~{fragments/layout}">
 <head>
 	<meta charset="utf-8" />
 	<title>My User</title>
@@ -13,7 +13,7 @@
 			<br /> <br />
 			<form action="#" th:action="@{/user/save/{id}(id=${user.id})}" th:object="${user}" method="post">
 				User name:<br> <input type="text" name="username" th:field="*{username}"><br>
-				Name:<br> <input type="text" name="name" th:field="*{name}"><br> 
+				Name:<br> <input type="text" name="name" th:field="*{firstName}"><br>
 	<!-- 			Location: <br> <input type="text" name="location" th:field="*{location}"><br><br> -->
 				<input type="submit" value="Save">
 				<button name="delete" value="delete">Delete</button>
