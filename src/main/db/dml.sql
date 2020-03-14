@@ -1,9 +1,9 @@
 -- Data insertions
-INSERT INTO user ( id, username, password, name ) VALUES ( 1, 'frangoro', 'Fran Gomez', 'frangoro');
-INSERT INTO user ( id, username, password, name ) VALUES ( 2, 'pepito', 'Pepe', 'pepito' );
-INSERT INTO user ( id, username, password, name ) VALUES ( 3, 'luilli', 'Luis', 'luilli' );
+INSERT INTO user ( id, username, password, firstName, secondName, email, enabled ) VALUES ( 1, 'frangoro', 'frangoro', 'Fran', 'Gómez', 'frangoro@gmail.com', 1);
+INSERT INTO user ( id, username, password, firstName, secondName, email, enabled ) VALUES ( 2, 'pepito', 'Pepe', 'Jose', 'Ruiz', 'asdf@gmail.com', 1);
+INSERT INTO user ( id, username, password, firstName, secondName, email, enabled ) VALUES ( 3, 'luilli', 'Luis', 'Luiz', 'Martel', 'franwergoro@gmail.com', 1);
 
-INSERT INTO user_roles (user_id, role)
+INSERT INTO role (user_id, role)
 VALUES (1, 'USER');
 INSERT INTO user_roles (user_id, role)
 VALUES (2, 'MANAGER');

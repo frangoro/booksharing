@@ -1,16 +1,12 @@
 package org.frangoro.booksharing.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-public class Book {
+@Table(name = "book")
+public class Book implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +20,13 @@ public class Book {
 	}
 	@Enumerated(EnumType.STRING)
 	private Status status;
-	@NotNull
-	private Long owner;
-	private Long user;
-	
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "owner")
+	private User owner;
+	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "reader")
+	private User reader;
+
 	//TODO Make a builder
 	
 	public Long getId() {
@@ -48,17 +47,17 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public Long getOwner() {
+	public User getOwner() {
 		return owner;
 	}
-	public void setOwner(Long owner) {
+	public void setOwner(User owner) {
 		this.owner = owner;
 	}
-	public Long getUser() {
-		return user;
+	public User getReader() {
+		return reader;
 	}
-	public void setUser(Long user) {
-		this.user = user;
+	public void setReader(User reader) {
+		this.reader = reader;
 	}
 	public Status getStatus() {
 		return status;
@@ -69,7 +68,7 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", owner=" + owner + ", user=" + user
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", owner=" + owner + ", user=" + reader
 				+ "]";
 	}
 

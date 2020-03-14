@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:layout="https://www.thymeleaf.org/doc/articles/layouts.html"
 	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layout/fragments}">
+	layout:decorate="~{fragments/layout}">
 <head>
 <meta charset="utf-8" />
 <title>Home</title>
@@ -14,7 +14,7 @@
 		<br />
 		<form method="get" action="#" th:action="@{/search}">
 			<label for="searchQuery">Title or author:</label> 
-			<input type="text" th:name="searchQuery" alt="Title or author" />
+			<input id="searchQuery" type="text" th:name="searchQuery" alt="Title or author" />
 			<input type="image"
 				th:src="@{/icons/searchIcon.jpeg}" alt="Submit" width="30"
 				th:href="@{'/search/'}"
@@ -38,8 +38,8 @@
 					<td th:text="${book.title}">Title</td>
 					<td th:text="${book.author}">Author</td>
 					<td th:text="${book.status}">Status</td>
-					<td th:text="${book.owner}">Owner</td>
-					<td th:text="${book.user}">User</td>
+					<td th:text="${book.owner.username}">Owner</td>
+					<td th:text="${book.reader?.username}">User</td>
 				</tr>
 			</tbody>
 		</table>

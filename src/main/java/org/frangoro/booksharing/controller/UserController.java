@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.frangoro.booksharing.domain.Book;
 import org.frangoro.booksharing.domain.User;
+import org.frangoro.booksharing.dto.UserDto;
 import org.frangoro.booksharing.service.BookService;
 import org.frangoro.booksharing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,9 @@ public class UserController {
 	    return "myUser";
 	}
 	
-	@PostMapping("/save/{id}")
-	public String save(Model model, @PathVariable("id") Long id, User user) {
-		user.setId(id);
-		service.save(user );
+	@PostMapping("/save")
+	public String save(Model model, UserDto userDto) {
+		service.registerNewUserAccount(userDto);
 		return "myUser";
 	}
 	
@@ -46,6 +46,12 @@ public class UserController {
 		service.delete(id);
 		return "search";
 	}
+
+	/*@PostMapping("/new}")
+	public String new(Model model) {
+		service.registerNewUserAccount(id);
+		return "search";
+	}*/
 	
 	@GetMapping("/books")
 	public String showBookList(Model model) {
@@ -73,14 +79,14 @@ public class UserController {
 	@PostMapping("/book/update/{id}")
 	public String updateBook(@PathVariable("id") Long id, Book book) {
 		book.setId(id);
-		book.setOwner(1l);// TODO id of logged user
+		book.setOwner(new User(1l));// TODO id of logged user
 		bookService.save(book);
 		return "redirect:/user/books";
 	}
 	
 	@PostMapping("/book/save")
 	public String saveBook(Book book) {
-		book.setOwner(1l);// TODO id of logged user
+		book.setOwner(new User(1l));// TODO id of logged user
 		bookService.save(book);
 		return "redirect:/user/books";
 	}

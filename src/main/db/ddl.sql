@@ -8,14 +8,16 @@ USE booksharing;
 -- Create tables
 CREATE TABLE IF NOT EXISTS user ( 
     id int auto_increment,
-    username varchar(20) not null,
-    password varchar(20) not null,
+    firstName varchar(20) not null,
+    secondName varchar(20) not null,
+    email varchar(60) not null,
+    password varchar(60) not null,
     enabled tinyint not null default 1,
-    name varchar(20),
+    userName varchar(20),
     constraint pk_user primary key (id) 
 );
 
-CREATE TABLE user_roles (
+CREATE TABLE IF NOT EXISTS role (
   id int NOT NULL AUTO_INCREMENT,
   user_id int NOT NULL,
   role varchar(50) NOT NULL,
