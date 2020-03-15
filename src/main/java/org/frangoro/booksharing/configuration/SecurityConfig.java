@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers(
-//                            "/",
+                            "/signup",
                             "/js/**",
                             "/css/**",
                             "/img/**",
@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    	//TODO jdb auth first and other day Social media authentication
+    	//TODO Allow social media authentication
     	
     	auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery(

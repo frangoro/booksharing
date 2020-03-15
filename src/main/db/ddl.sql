@@ -9,12 +9,12 @@ USE booksharing;
 CREATE TABLE IF NOT EXISTS user ( 
     id int auto_increment,
     firstName varchar(20) not null,
-    secondName varchar(20) not null,
+    lastName varchar(20) not null,
     email varchar(60) not null,
     password varchar(60) not null,
     enabled tinyint not null default 1,
     userName varchar(20),
-    constraint pk_user primary key (id) 
+    constraint pk_user primary key (id)
 );
 
 CREATE TABLE IF NOT EXISTS role (
@@ -25,11 +25,11 @@ CREATE TABLE IF NOT EXISTS role (
   UNIQUE KEY uni_username_role (id,user_id),
   FOREIGN KEY fk_username_idx (user_id) REFERENCES user (id));
 
-CREATE TABLE IF NOT EXISTS book ( 
+CREATE TABLE IF NOT EXISTS book (
     id int auto_increment,
     title varchar(50) not null,
-    author varchar(50) not null, 
-    status ENUM('available','borrowed') not null,
+    author varchar(50) not null,
+    status ENUM('AVAILABLE','BORROWED') not null,
     owner int not null,
     reader int,
     constraint pk_book primary key (id),

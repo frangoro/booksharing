@@ -14,7 +14,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 			+ "OR lower(b.author) LIKE lower(concat('%', ?2,'%'))")
     List<Book> findByTitleOrAuthor(String title, String author);
 	
-	@Query("SELECT b FROM Book b WHERE b.owner = ?1")
+	@Query("SELECT b FROM Book b WHERE b.owner = ?1") //FIXME How to do these queries with foreign keys
 	List<Book> findByOwnerId(Long ownerId);
 
 }

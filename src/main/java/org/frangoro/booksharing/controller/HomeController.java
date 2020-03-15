@@ -16,16 +16,6 @@ public class HomeController {
 	@Autowired
 	private BookService service;
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
-
-	@GetMapping("/access-denied")
-	public String accessDenied() {
-		return "/error/access-denied";
-	}
-	
 	@GetMapping(value= {"","/","index","/home"})
 	public String viewHomePage(Model model) {
 	    List<Book> books = service.listAll();

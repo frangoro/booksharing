@@ -47,12 +47,6 @@ public class UserController {
 		return "search";
 	}
 
-	/*@PostMapping("/new}")
-	public String new(Model model) {
-		service.registerNewUserAccount(id);
-		return "search";
-	}*/
-	
 	@GetMapping("/books")
 	public String showBookList(Model model) {
 		// TODO id of logged user
