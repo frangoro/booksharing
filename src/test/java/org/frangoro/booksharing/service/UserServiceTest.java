@@ -33,7 +33,8 @@ class UserServiceTest {
 
     @Test
     void generatePasswordEncoded() {
-        String pass = passwordEncoder.encode("frangoro");
-        assertEquals("$2a$10$5uGZnc2eBQ7.XowTKwYbyudBR4RYjDVYWFdGNaHHSz/hbIdd//Q2W",pass);
+        String pass = passwordEncoder.encode("myPass");
+        System.out.println(pass);
+        assertNotNull(pass);
     }
 }
