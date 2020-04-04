@@ -11,12 +11,12 @@
 		<div align="center">
 			<h1>User Management</h1>
 			<br /> <br />
-			<form action="#" th:action="@{/user/save/{id}(id=${user.id})}" th:object="${user}" method="post">
+			<form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
 				User name:<br> <input type="text" name="username" th:field="*{username}"><br>
 				Name:<br> <input type="text" name="name" th:field="*{firstName}"><br>
 	<!-- 			Location: <br> <input type="text" name="location" th:field="*{location}"><br><br> -->
-				<input type="submit" value="Save">
-				<button name="delete" value="delete">Delete</button>
+				<button type="submit" name="action" value="save">Save</button>
+				<button type="submit" name="action" value="delete">Delete</button>
 			</form>
 		</div>
 	</div>

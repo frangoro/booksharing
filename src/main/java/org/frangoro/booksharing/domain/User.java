@@ -91,7 +91,15 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	@Override
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Override
     public String toString() {
         return "User [id=" + id + ", username=" + username + ", name=" + firstName + "]";
     }

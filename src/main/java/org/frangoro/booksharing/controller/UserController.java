@@ -8,6 +8,7 @@ import org.frangoro.booksharing.domain.User;
 import org.frangoro.booksharing.dto.UserDto;
 import org.frangoro.booksharing.service.BookService;
 import org.frangoro.booksharing.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,21 +31,32 @@ public class UserController {
 	public String view(Model model) {
 		// TODO id of logged user
 	    User user = service.get(1L);
-	    model.addAttribute("user", user);
+		UserDto userDto = new UserDto();
+		userDto.setUsername(user.getUsername());
+		userDto.setFirstName(user.getFirstName());
+	    model.addAttribute("user", userDto);
 	     
 	    return "myUser";
 	}
 	
 	@PostMapping("/save")
 	public String save(Model model, UserDto userDto) {
-		service.registerNewUserAccount(userDto);
+		User user = service.registerNewUserAccount(userDto);
+		model.addAttribute("user", user);
+		return "myUser";
+	}
+
+	@PostMapping("/update")
+	public String update(Model model, UserDto userDto) {
+		User user = service.updateUser(userDto);
+		model.addAttribute("user", user);
 		return "myUser";
 	}
 	
-	@PostMapping("/delete/{id}")
-	public String delete(Model model, @PathVariable("id") Long id) {
-		service.delete(id);
-		return "search";
+	@PostMapping(value="/delete", params="action=cancel")
+	public String delete(Model model, UserDto userDto) {
+		service.deleteUser(userDto);
+		return "login";
 	}
 
 	@GetMapping("/books")
