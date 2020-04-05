@@ -55,11 +55,13 @@ public class UserService {
 		User user = repo.findByUsername(userDto.getUsername());
 		user.setEmail(userDto.getEmail());
 		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+		//TODO Check password confirmation. Bear in mind that if this field is empty then we must not change the pass
 		return repo.save(user);
 	}
 
 	public void deleteUser(UserDto userDto) {
 		User user = repo.findByUsername(userDto.getUsername());
 		repo.delete(user);
+		//TODO Also remove the user books from searchs
 	}
 }

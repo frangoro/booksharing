@@ -12,11 +12,35 @@
 			<h1>User Management</h1>
 			<br /> <br />
 			<form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
-				User name:<br> <input type="text" name="username" th:field="*{username}"><br>
-				Name:<br> <input type="text" name="name" th:field="*{firstName}"><br>
-	<!-- 			Location: <br> <input type="text" name="location" th:field="*{location}"><br><br> -->
-				<button type="submit" name="action" value="save">Save</button>
-				<button type="submit" name="action" value="delete">Delete</button>
+				<div class="form-group">
+					<label for="username">Alias</label>:
+					<input type="text" id="username" th:field="*{username}" autofocus="autofocus" class="form-control" disabled="true">
+					<small id="usernameHelp" class="form-text text-muted">This is the name the other users see.</small>
+				</div>
+				<div class="form-group">
+					<label for="firstName">First name</label>:
+					<input type="text" id="firstName" th:field="*{firstName}" class="form-control" disabled="true">
+				</div>
+				<div class="form-group">
+					<label for="username">Last name</label>:
+					<input type="text" id="lastName" th:field="*{lastName}" class="form-control" disabled="true">
+				</div>
+				<div class="form-group">
+					<label for="username">Email</label>:
+					<input type="text" id="email" th:field="*{email}" class="form-control" placeholder="name@example.com">
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>:
+					<input type="password" id="password" th:field="*{password}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="passwordConfirmation">Confirm password</label>:
+					<input type="password" id="passwordConfirmation" th:field="*{passwordConfirmation}" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</form>
+			<form action="#" th:action="@{/user/delete}" th:object="${user}" method="post">
+				<button type="submit" name="action" value="delete">Remove my user</button>
 			</form>
 		</div>
 	</div>

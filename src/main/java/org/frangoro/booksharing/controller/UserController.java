@@ -37,19 +37,23 @@ public class UserController {
 	@PostMapping("/save")
 	public String save(Model model, UserDto userDto) {
 		User user = service.registerNewUserAccount(userDto);
-		model.addAttribute("user", user);
+		model.addAttribute("user", userDto);
 		return "editUser";
 	}
 
 	@PostMapping("/update")
 	public String update(Model model, UserDto userDto) {
+		userDto.setUsername(authenticationFacade.getAuthentication().getName());
+		//TODO Admin can update other users, so he can send the username in the dto
 		User user = service.updateUser(userDto);
-		model.addAttribute("user", user);
+		BeanUtils.copyProperties(user,userDto);
+		model.addAttribute("user", userDto);
 		return "editUser";
 	}
 	
-	@PostMapping(value="/delete", params="action=cancel")
+	@PostMapping(value="/delete")
 	public String delete(Model model, UserDto userDto) {
+		userDto.setUsername(authenticationFacade.getAuthentication().getName());
 		service.deleteUser(userDto);
 		return "login";
 	}
