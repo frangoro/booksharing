@@ -29,6 +29,10 @@ public class UserService {
 		return repo.findById(id).get();
 	}
 
+	public User get(String username) {
+		return repo.findByUsername(username);
+	}
+
 	public void delete(Long id) {
 		repo.deleteById(id);
 	}
@@ -49,8 +53,8 @@ public class UserService {
 
 	public User updateUser(UserDto userDto) {
 		User user = repo.findByUsername(userDto.getUsername());
-		user.setUsername(userDto.getUsername());
-		user.setFirstName(userDto.getFirstName());
+		user.setEmail(userDto.getEmail());
+		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		return repo.save(user);
 	}
 
