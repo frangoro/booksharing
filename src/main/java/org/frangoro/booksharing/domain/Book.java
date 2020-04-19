@@ -15,8 +15,8 @@ public class Book implements Serializable {
 	private String title;
 	@NotBlank
 	private String author;
-	private enum Status {
-		AVAILABLE, BORROWED
+	public enum Status {
+		AVAILABLE, BORROWED, DISABLED
 	}
 	@Enumerated(EnumType.STRING)
 	private Status status;

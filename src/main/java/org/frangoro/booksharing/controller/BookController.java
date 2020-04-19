@@ -22,7 +22,7 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public String showBookList(Model model) {
 		// TODO id of logged user
 		Long userId = 1L;
@@ -30,7 +30,7 @@ public class BookController {
 	    model.addAttribute("books", books);
 	    
 		return "myBooks";
-	}
+	}*/
 
 	@GetMapping("/view/{id}")
 	public String view(Model model, @PathVariable("id") Long id) {

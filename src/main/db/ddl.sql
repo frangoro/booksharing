@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS book (
     id int auto_increment,
     title varchar(50) not null,
     author varchar(50) not null,
-    status ENUM('AVAILABLE','BORROWED') not null,
+    status ENUM('AVAILABLE','BORROWED','DISABLED') not null,
     owner int not null,
     reader int,
     constraint pk_book primary key (id),

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,11 +52,13 @@ public class UserController {
 		return "editUser";
 	}
 	
-	@PostMapping(value="/delete")
-	public String delete(Model model, UserDto userDto) {
-		userDto.setUsername(authenticationFacade.getAuthentication().getName());
-		service.deleteUser(userDto);
-		return "login";
+	@GetMapping(value="/delete/{username}")
+	public String delete(@PathVariable("username") String username, Model model) {
+		service.deleteUserByUsername(username);
+		if (authenticationFacade.getAuthentication().getName().equals(username)) {
+			return "login";
+		}
+		return "editUser";
 	}
 
 }

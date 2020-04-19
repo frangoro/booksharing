@@ -18,7 +18,7 @@ public class HomeController {
 	
 	@GetMapping(value= {"","/","index","/home"})
 	public String viewHomePage(Model model) {
-	    List<Book> books = service.listAll();
+	    List<Book> books = service.findAllBooksEnabled();
 	    model.addAttribute("books", books);
 	     
 	    return "search";

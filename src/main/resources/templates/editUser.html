@@ -38,9 +38,7 @@
 					<input type="password" id="passwordConfirmation" th:field="*{passwordConfirmation}" class="form-control">
 				</div>
 				<button type="submit" class="btn btn-primary">Save</button>
-			</form>
-			<form action="#" th:action="@{/user/delete}" th:object="${user}" method="post">
-				<button type="submit" name="action" value="delete">Remove my user</button>
+				<a th:href="@{/user/delete/{username}(username=${user.username})}">Delete</a>
 			</form>
 		</div>
 	</div>

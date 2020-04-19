@@ -2,6 +2,7 @@ package org.frangoro.booksharing.service;
 
 import org.frangoro.booksharing.domain.User;
 import org.frangoro.booksharing.dto.UserDto;
+import org.frangoro.booksharing.repository.BookRepository;
 import org.frangoro.booksharing.repository.UserRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,11 +17,12 @@ class UserServiceTest {
     private UserService userService;
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
+    private BookRepository bookRepository;
 
     @BeforeEach
     void setup() {
         passwordEncoder = new BCryptPasswordEncoder();
-        userService = new UserService(userRepository, passwordEncoder);
+        userService = new UserService(userRepository, passwordEncoder, bookRepository);
     }
 
     /*@Test
@@ -36,5 +38,6 @@ class UserServiceTest {
         String pass = passwordEncoder.encode("myPass");
         System.out.println(pass);
         assertNotNull(pass);
+        assertTrue(passwordEncoder.matches("myPass",pass));
     }
 }
