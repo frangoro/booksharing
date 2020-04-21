@@ -4,14 +4,14 @@
 	layout:decorate="~{fragments/layout}">
 <head>
 	<meta charset="utf-8" />
-	<title>My User</title>
+	<title>Edit User</title>
 </head>
 <body>
 	<div layout:fragment="content" th:remove="tag">
 		<div align="center">
 			<h1>User Management</h1>
 			<br /> <br />
-			<form action="#" th:action="@{/user/update}" th:object="${user}" method="post">
+			<form action="#" th:action="@{/user/update/{username}(username=${user.username})}" th:object="${user}" method="post">
 				<div class="form-group">
 					<label for="username">Alias</label>:
 					<input type="text" id="username" th:field="*{username}" autofocus="autofocus" class="form-control" disabled="true">

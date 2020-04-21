@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class UserService {
@@ -57,9 +58,18 @@ public class UserService {
 	public User updateUser(UserDto userDto) {
 		User user = userRepository.findByUsername(userDto.getUsername());
 		user.setEmail(userDto.getEmail());
-		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-		//TODO Check password confirmation. Bear in mind that if this field is empty then we must not change the pass
+		updatePassword(user, userDto);
 		return userRepository.save(user);
+	}
+
+	private void updatePassword(User user, UserDto userDto) {
+		checkPassword(userDto.getPassword(), userDto.getPasswordConfirmation());
+		user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+	}
+
+	private boolean checkPassword(String password, String passwordConfirmation) {
+		//TODO Throw validation. Bear in mind that if this field is empty then we must not change the pass
+		return password != null && passwordConfirmation != null && password.equals(passwordConfirmation);
 	}
 
 	public void deleteUserByUsername(String username) {

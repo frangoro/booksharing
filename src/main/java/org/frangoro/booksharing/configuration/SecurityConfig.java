@@ -31,10 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/css/**",
                             "/img/**",
                             "/webjars/**").permitAll()
-					//.antMatchers("/admin/**").hasAuthority("ADMIN")
-					//.antMatchers("/**").hasAnyAuthority("ADMIN", "USER")
+					.antMatchers("/admin/**").hasAuthority("ADMIN")
+					.antMatchers("/**").hasAnyAuthority("ADMIN", "USER")
                     //.anyRequest().denyAll()
-					//.anyRequest().authenticated()
+					.anyRequest().authenticated()
                 .and()
                 	.formLogin()
                     	.loginPage("/login")

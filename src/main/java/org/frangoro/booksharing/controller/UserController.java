@@ -31,7 +31,6 @@ public class UserController {
 		UserDto userDto = new UserDto();
 		BeanUtils.copyProperties(user,userDto);
 	    model.addAttribute("user", userDto);
-	     
 	    return "editUser";
 	}
 	
@@ -42,10 +41,10 @@ public class UserController {
 		return "editUser";
 	}
 
-	@PostMapping("/update")
-	public String update(Model model, UserDto userDto) {
-		userDto.setUsername(authenticationFacade.getAuthentication().getName());
+	@PostMapping("/update/{username}")
+	public String update(@PathVariable("username") String username, Model model, UserDto userDto) {
 		//TODO Admin can update other users, so he can send the username in the dto
+		userDto.setUsername(username);
 		User user = service.updateUser(userDto);
 		BeanUtils.copyProperties(user,userDto);
 		model.addAttribute("user", userDto);
