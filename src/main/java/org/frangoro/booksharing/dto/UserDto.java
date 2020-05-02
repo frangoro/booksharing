@@ -1,12 +1,27 @@
 package org.frangoro.booksharing.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class UserDto {
 
+    @NotBlank
+    @Size(min=2, max=30)
     private String username;
+    @Size(min=0, max=30)
     private String firstName;
+    @Size(min=0, max=30)
     private String lastName;
+    @NotNull
+    @Size(min=8, max=20)
     private String password;
+    @NotNull
+    @Size(min=8, max=20)
     private String passwordConfirmation;
+    @NotBlank
+    @Email
     private String email;
 
     public String getUsername() {

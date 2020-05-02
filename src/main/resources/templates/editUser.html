@@ -11,7 +11,7 @@
 		<div align="center">
 			<h1>User Management</h1>
 			<br /> <br />
-			<form action="#" th:action="@{/user/update/{username}(username=${user.username})}" th:object="${user}" method="post">
+			<form action="#" th:action="@{/user/update/{username}(username=${userDto.username})}" th:object="${userDto}" method="post">
 				<div class="form-group">
 					<label for="username">Alias</label>:
 					<input type="text" id="username" th:field="*{username}" autofocus="autofocus" class="form-control" disabled="true">
@@ -28,17 +28,20 @@
 				<div class="form-group">
 					<label for="username">Email</label>:
 					<input type="text" id="email" th:field="*{email}" class="form-control" placeholder="name@example.com">
+					<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email Error<p/>
 				</div>
 				<div class="form-group">
 					<label for="password">Password</label>:
 					<input type="password" id="password" th:field="*{password}" class="form-control">
+					<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</p>
 				</div>
 				<div class="form-group">
 					<label for="passwordConfirmation">Confirm password</label>:
 					<input type="password" id="passwordConfirmation" th:field="*{passwordConfirmation}" class="form-control">
+					<div th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}">passwordConfirmation Error<div/>
 				</div>
 				<button type="submit" class="btn btn-primary">Save</button>
-				<a th:href="@{/user/delete/{username}(username=${user.username})}">Delete</a>
+				<a th:href="@{/user/delete/{username}(username=${userDto.username})}">Delete</a>
 			</form>
 		</div>
 	</div>
