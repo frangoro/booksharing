@@ -32,12 +32,11 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public String save(Model model, @Valid UserDto userDto, BindingResult bindingResult) {
+    public String save(@Valid UserDto userDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "newUser";
         }
         User user = service.registerNewUserAccount(userDto);
-        model.addAttribute("user", userDto);
         return "login";
     }
 
